@@ -1,0 +1,236 @@
+[gd_scene load_steps=22 format=3 uid="uid://bgxyw1ob5dw0m"]
+
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_ft8rx"]
+[ext_resource type="Texture2D" uid="uid://d1aj7qad1s3er" path="res://assets/sprites/coin.png" id="1_vv0nt"]
+[ext_resource type="AudioStream" uid="uid://d41ay6nqkilt" path="res://assets/sounds/coin.wav" id="3_ogbwb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chgga"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bigtq"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beyhu"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4r3a"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwad1"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hc70"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5if7"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfe06"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gih5h"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxt56"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q5qy"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swmma"]
+atlas = ExtResource("1_vv0nt")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iodqc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chgga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bigtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beyhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4r3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwad1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hc70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5if7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfe06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gih5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxt56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q5qy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swmma")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8q3d4"]
+radius = 5.09902
+
+[sub_resource type="GDScript" id="GDScript_oant0"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+"
+
+[sub_resource type="Animation" id="Animation_bxjpc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PickUpSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pndp6"]
+resource_name = "pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PickUpSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wf8oi"]
+_data = {
+"RESET": SubResource("Animation_bxjpc"),
+"pickup": SubResource("Animation_pndp6")
+}
+
+[node name="Coin" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_ft8rx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iodqc")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8q3d4")
+script = SubResource("GDScript_oant0")
+
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ogbwb")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wf8oi")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
