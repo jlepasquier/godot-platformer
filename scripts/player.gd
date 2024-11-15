@@ -7,9 +7,10 @@ extends CharacterBody2D
 @onready var movement_state_machine: Node = $StateMachine
 #@onready var gun_state_machine: Node = $gun_state_machine
 @onready var player_move_component = $PlayerMoveComponent
+@onready var player_dash_component = $PlayerDashComponent
 
 func _ready() -> void:
-	movement_state_machine.init(self, movement_animations, player_move_component)
+	movement_state_machine.init(self, movement_animations, player_move_component, player_dash_component)
 	#gun_state_machine.init(self, gun_animations, player_move_component)
 
 func _unhandled_input(event: InputEvent) -> void:

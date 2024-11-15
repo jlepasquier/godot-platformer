@@ -7,7 +7,8 @@ extends Node
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var animations: AnimatedSprite2D
-var move_component
+var move_component: PlayerMoveComponent
+var dash_component: PlayerDashComponent
 var parent: CharacterBody2D
 
 

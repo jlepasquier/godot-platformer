@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://fnnjmj4dhbea"]
+[gd_scene load_steps=37 format=3 uid="uid://fnnjmj4dhbea"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_hj8ru"]
 [ext_resource type="Texture2D" uid="uid://bkxy0hc83o6ot" path="res://assets/sprites/knight.png" id="1_yarbm"]
@@ -7,9 +7,10 @@
 [ext_resource type="Script" path="res://scripts/state/jump.gd" id="5_dtca3"]
 [ext_resource type="Script" path="res://scripts/state/fall.gd" id="6_sffyd"]
 [ext_resource type="Script" path="res://scripts/state/move.gd" id="7_2oxo1"]
-[ext_resource type="Script" path="res://scenes/dash.gd" id="8_eca11"]
+[ext_resource type="Script" path="res://scripts/state/dash.gd" id="8_eca11"]
 [ext_resource type="Script" path="res://scripts/state/shadow.gd" id="9_3twjh"]
 [ext_resource type="Script" path="res://scripts/move_component.gd" id="9_yxwur"]
+[ext_resource type="Script" path="res://scripts/dash_component.gd" id="11_8ccfj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yttxv"]
 atlas = ExtResource("1_yarbm")
@@ -213,7 +214,7 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_chc3n")
 animation = &"dash"
 autoplay = "idle"
-frame_progress = 0.50144
+frame_progress = 0.154731
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -278,6 +279,9 @@ wait_time = 0.061
 
 [node name="PlayerMoveComponent" type="Node2D" parent="."]
 script = ExtResource("9_yxwur")
+
+[node name="PlayerDashComponent" type="Node2D" parent="."]
+script = ExtResource("11_8ccfj")
 
 [connection signal="timeout" from="StateMachine/Fall/CoyoteTimer" to="StateMachine/Fall" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Dash/GhostTrail/DestroyShadowTimer" to="StateMachine/Dash/GhostTrail" method="_on_destroy_shadow_timer_timeout"]

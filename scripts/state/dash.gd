@@ -15,6 +15,7 @@ var direction := 1.0
 
 func enter() -> void:
 	super()
+	dash_component.use_dash()
 	dash_timer = dash_duration
 	direction = get_direction()
 	parent.velocity.x = direction * move_speed

@@ -14,7 +14,7 @@ func enter() -> void:
 
 
 func process_input(event: InputEvent) -> State:
-	if Input.is_action_just_pressed('dash'):
+	if dash_component.can_dash():
 		return dash_state
 	return null
 

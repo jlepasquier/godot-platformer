@@ -1,8 +1,6 @@
+class_name PlayerMoveComponent
 extends Node
 
-var _can_jump = false
-const COYOTE_DURATION = 0.5
-@onready var coyote_timer: Timer = $"../StateMachine/Idle/CoyoteTimer"
 
 # Return the desired direction of movement for the character
 # in the range [-1, 1], where positive values indicate a desire
@@ -13,6 +11,3 @@ func get_movement_direction() -> float:
 # Return a boolean indicating if the character wants to jump
 func wants_jump() -> bool:
 	return Input.is_action_just_pressed('jump')
-
-func can_jump():
-	return _can_jump

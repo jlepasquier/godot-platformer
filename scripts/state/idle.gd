@@ -14,11 +14,14 @@ func process_input(event: InputEvent) -> State:
 		return jump_state
 	if get_movement_input() != 0.0:
 		return move_state
-	if Input.is_action_just_pressed('dash'):
+	if dash_component.can_dash():
 		return dash_state
 	return null
 
 func process_physics(delta: float) -> State:
+	if parent.is_on_floor():
+		dash_component.restore_dashes()
+		
 	parent.velocity.y += gravity * delta
 	parent.move_and_slide()
 	
