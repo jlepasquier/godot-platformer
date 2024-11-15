@@ -1,45 +1,71 @@
-# You could also declare a class_name for the move state
-# so you don't have to reference the script directly
-extends 'res://scripts/state/move.gd'
+extends State
 
-@export
-var move_state: State
+@export var move_state: State
+@export var fall_state: State
+@export var idle_state: State
 
-@export
-var time_to_dash := 0.5
+@export var dash_duration := 0.2
 
 var dash_timer := 0.0
 var direction := 1.0
 
+
+@onready var ghost_trail: Node2D = $GhostTrail
+
+
 func enter() -> void:
 	super()
-	dash_timer = time_to_dash
+	dash_timer = dash_duration
+	direction = get_direction()
+	parent.velocity.x = direction * move_speed
+	parent.velocity.y = 0
+	ghost_trail.start(parent)
+	
+	
+func exit() -> void:
+	super()
+	ghost_trail.stop()
 
-	# Simple check for which direction to dash towards
-	if animations.flip_h:
-		direction = -1
-	else:
-		direction = 1
 
 # Just to be safe, disable any other inputs
 func process_input(event: InputEvent) -> State:
 	return null
 
+
 func process_physics(delta: float) -> State:
 	dash_timer -= delta
-	if dash_timer <= 0.0:
-		# Fall back on the default input implementation to
-		# determine where to go next
-		if super.get_movement_input() != 0.0:
-			return move_state
-		return idle_state
 	
-	# At this point, run 'process_physics' in the move script as written
-	return super(delta)
+	if dash_timer <= 0.0:
+		return on_dash_over()
+	else:
+		return while_still_dashing(delta)
+
+
+func on_dash_over():
+	if !parent.is_on_floor():
+		return fall_state
+	if Input.get_axis('move_left', 'move_right') != 0.0:
+		return move_state
+	return idle_state
+
+
+func while_still_dashing(delta):
+	if parent.velocity.x == 0:
+		return idle_state
+	parent.move_and_slide()
+
 
 # Override movement inputs
 func get_movement_input() -> float:
 	return direction
 
+
 func get_jump() -> bool:
 	return false
+
+
+func get_direction() -> int:
+	if animations.flip_h:
+		return -1
+	else:
+		return 1

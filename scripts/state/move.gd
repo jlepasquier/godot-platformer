@@ -8,7 +8,6 @@ extends State
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('dash'):
 		return dash_state
-	
 	return null
 
 func process_physics(delta: float) -> State:

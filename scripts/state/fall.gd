@@ -3,6 +3,7 @@ extends State
 @export var idle_state: State
 @export var move_state: State
 @export var jump_state: State
+@export var dash_state: State
 
 @onready var coyote_timer: Timer = $CoyoteTimer
 
@@ -11,6 +12,17 @@ var can_jump = false
 func enter() -> void:
 	can_jump = true
 	coyote_timer.start()
+	
+
+func _on_coyote_timer_timeout() -> void:
+	can_jump = false
+
+
+func process_input(event: InputEvent) -> State:
+	if Input.is_action_just_pressed('dash'):
+		return dash_state
+	return null
+
 
 func process_physics(delta: float) -> State:
 	if can_jump and get_jump():
@@ -30,7 +42,3 @@ func process_physics(delta: float) -> State:
 			return move_state
 		return idle_state
 	return null
-
-
-func _on_coyote_timer_timeout() -> void:
-	can_jump = false
